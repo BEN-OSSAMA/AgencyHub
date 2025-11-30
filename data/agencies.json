@@ -1,0 +1,92 @@
+[
+  {
+    "id": "AGY001",
+    "city": "New York",
+    "address": "350 Fifth Avenue, Suite 4800",
+    "createdAt": "2023-01-15T10:30:00Z"
+  },
+  {
+    "id": "AGY002",
+    "city": "Los Angeles",
+    "address": "1100 S Flower St, Suite 3200",
+    "createdAt": "2023-02-20T14:45:00Z"
+  },
+  {
+    "id": "AGY003",
+    "city": "Chicago",
+    "address": "233 S Wacker Dr, Suite 6500",
+    "createdAt": "2023-03-10T09:15:00Z"
+  },
+  {
+    "id": "AGY004",
+    "city": "Houston",
+    "address": "1000 Louisiana St, Suite 5800",
+    "createdAt": "2023-04-05T11:00:00Z"
+  },
+  {
+    "id": "AGY005",
+    "city": "Phoenix",
+    "address": "2398 E Camelback Rd, Suite 850",
+    "createdAt": "2023-05-18T16:30:00Z"
+  },
+  {
+    "id": "AGY006",
+    "city": "Philadelphia",
+    "address": "1700 Market St, Suite 2400",
+    "createdAt": "2023-06-22T08:45:00Z"
+  },
+  {
+    "id": "AGY007",
+    "city": "San Antonio",
+    "address": "112 E Pecan St, Suite 1200",
+    "createdAt": "2023-07-14T13:20:00Z"
+  },
+  {
+    "id": "AGY008",
+    "city": "San Diego",
+    "address": "600 B St, Suite 1400",
+    "createdAt": "2023-08-30T10:00:00Z"
+  },
+  {
+    "id": "AGY009",
+    "city": "Dallas",
+    "address": "2001 Ross Ave, Suite 2700",
+    "createdAt": "2023-09-12T15:10:00Z"
+  },
+  {
+    "id": "AGY010",
+    "city": "San Jose",
+    "address": "160 W Santa Clara St, Suite 1600",
+    "createdAt": "2023-10-25T12:30:00Z"
+  },
+  {
+    "id": "AGY011",
+    "city": "Austin",
+    "address": "816 Congress Ave, Suite 1200",
+    "createdAt": "2023-11-08T09:00:00Z"
+  },
+  {
+    "id": "AGY012",
+    "city": "Jacksonville",
+    "address": null,
+    "createdAt": "2023-12-01T14:00:00Z"
+  },
+  {
+    "id": "AGY013",
+    "city": "Fort Worth",
+    "address": "777 Main St, Suite 2100",
+    "createdAt": "2024-01-10T11:30:00Z"
+  },
+  {
+    "id": "AGY014",
+    "city": "Columbus",
+    "address": "41 S High St, Suite 2600",
+    "createdAt": "2024-02-14T16:45:00Z"
+  },
+  {
+    "id": "AGY015",
+    "city": "Charlotte",
+    "address": "401 S Tryon St, Suite 2300",
+    "createdAt": "2024-03-20T08:15:00Z"
+  }
+]
