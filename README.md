@@ -1,6 +1,6 @@
 # 🚀 Agency Dashboard
 
-A modern, interactive Next.js 16 dashboard application with Clerk authentication, PostgreSQL database integration, and a stunning 3D UI for managing agencies and contacts.
+A modern Next.js 16 dashboard application with Clerk authentication and PostgreSQL database integration for managing agencies and contacts with daily usage limits.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16.0.3-black?style=flat&logo=next.js)
 ![React](https://img.shields.io/badge/React-19.2.0-blue?style=flat&logo=react)
@@ -9,383 +9,401 @@ A modern, interactive Next.js 16 dashboard application with Clerk authentication
 
 ## 🌐 Live Demo
 
-**🔗 Application Live:** [https://your-app.vercel.app](https://your-app.vercel.app)  
-*(Remplacez par votre URL Vercel après déploiement)*
+**🔗 Application Live:** [https://agency-hub01.vercel.app](https://agency-hub01.vercel.app)
 
-### 🧪 Compte de Test / Demo
+### 🧪 Test Account
 
-Pour tester l'application, créez un compte en utilisant le formulaire d'inscription sur la page d'accueil, ou utilisez ces identifiants de test :
+Create your own account using the sign-up page, or use these test credentials:
 
 - **Email:** `demo@agencyhub.com`
-- **Mot de passe:** `Demo@2024`
-- *(Ces identifiants doivent être créés dans votre instance Clerk - voir [DEMO_ACCOUNT.md](./DEMO_ACCOUNT.md))*
+- **Password:** `Demo@2024`
 
-## ✨ Features
+> **Note:** If test credentials don't work, please create a new account via the sign-up page.
 
-- 🔐 **Authentication** - Secure user authentication with Clerk
-- 🏢 **Agency Management** - View and manage all agencies in a beautiful table
-- 👥 **Contact Directory** - Access contact database with smart search and pagination
-- 📊 **Usage Analytics** - Track daily usage with visual charts and statistics
-- 🎯 **Daily Limits** - Smart limit system (50 contacts/day) with upgrade prompts
-- 🎨 **3D Interactive UI** - Modern 3D effects and animations on homepage
-- 🌓 **Dark Mode** - Full dark/light theme support with system preference
-- 📱 **Responsive Design** - Perfect experience on all devices
-- 🔍 **Advanced Search** - Powerful search functionality across all data
+## ✨ Core Features
+
+### Required Functionality ✅
+
+- 🔐 **User Authentication** - Secure authentication with Clerk (required to access dashboard)
+- 🏢 **View All Agencies** - Access complete database of agencies in a dedicated table page
+- 👥 **View Contacts** - Browse contacts database with pagination in a separate table page
+- 🎯 **Daily Limit System** - Users limited to 50 contact views per day
+- 💳 **Upgrade Prompt** - Modal appears when daily limit is exceeded (no payment integration)
+- 📊 **Usage Tracking** - Monitor daily contact views with PostgreSQL database
+
+### Additional Features
+
+- 🌓 **Dark Mode** - Theme toggle with system preference detection
+- 📱 **Responsive Design** - Optimized for all screen sizes
+- 🔍 **Search & Filter** - Advanced search across agencies and contacts
+- 📈 **Usage Analytics** - Visual charts showing your daily usage patterns
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js 16 (App Router)
-- **Authentication:** Clerk
-- **Database:** PostgreSQL (Neon)
-- **Styling:** Tailwind CSS v4 + shadcn/ui
-- **Deployment:** Vercel
-- **Language:** TypeScript
+| Category | Technology |
+|----------|-----------|
+| **Framework** | Next.js 16 (App Router) |
+| **Authentication** | Clerk |
+| **Database** | PostgreSQL (Neon) |
+| **Styling** | Tailwind CSS v4 + shadcn/ui |
+| **Deployment** | Vercel |
+| **Language** | TypeScript |
+| **Version Control** | GitHub |
 
-## 📋 Requirements Checklist
+## 📋 Requirements Verification
 
-✅ Users must authenticate to access the dashboard  
-✅ Authenticated users can view all agencies  
-✅ Users limited to 50 contacts per day  
-✅ Upgrade prompt when daily limit exceeded  
-✅ Agencies and contacts in separate table pages  
-✅ Next.js 16 framework  
-✅ Clerk authentication  
-✅ System design diagram included  
+| Requirement | Status | Implementation |
+|------------|--------|----------------|
+| User authentication required | ✅ | Clerk authentication with middleware protection |
+| View all agencies | ✅ | `/dashboard/agencies` page with full database table |
+| 50 contacts/day limit | ✅ | PostgreSQL tracking with daily reset |
+| Upgrade prompt on limit | ✅ | Modal with blur effect (no payment) |
+| Separate table pages | ✅ | `/agencies` and `/contacts` routes |
+| Next.js 16 | ✅ | Using App Router and React 19 |
+| Clerk authentication | ✅ | Full integration with protected routes |
+| Vercel deployment | ✅ | Optimized for Vercel platform |
+| GitHub repository | ✅ | Version controlled with Git |
+| System design diagram | ✅ | See diagram section below |
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js 18+ installed
-- A Clerk account ([Sign up here](https://clerk.com))
-- A Neon database account ([Get started here](https://neon.tech)) or other PostgreSQL provider
-- Git installed
+- [Clerk account](https://clerk.com) (free tier available)
+- [Neon database](https://neon.tech) or any PostgreSQL provider
+- Git for version control
 
-### Local Development
+### Installation Steps
 
 1. **Clone the repository:**
-   \`\`\`bash
-   git clone https://github.com/YOUR_USERNAME/agency-dashboard.git
-   cd agency-dashboard
-   \`\`\`
+   ```bash
+   git clone https://github.com/BEN-OSSAMA/AgencyHub.git
+   cd AgencyHub
+   ```
 
 2. **Install dependencies:**
-   \`\`\`bash
+   ```bash
    npm install
-   # or
-   pnpm install
-   \`\`\`
+   ```
 
-3. **Set up environment variables:**
+3. **Configure environment variables:**
    
-   Create a \`.env.local\` file in the root directory:
+   Create `.env.local` in the root directory:
    
-   \`\`\`env
-   # Clerk Authentication
+   ```env
+   # Clerk Authentication Keys
    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_key_here
    CLERK_SECRET_KEY=sk_test_your_secret_key_here
    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-   # Database (Neon PostgreSQL)
+   # PostgreSQL Database Connection
    DATABASE_URL=postgresql://user:password@host:5432/database?sslmode=require
-   \`\`\`
+   ```
 
 4. **Set up the database:**
    
-   Run the SQL script to create the required tables:
+   Run the SQL initialization script:
    
-   \`\`\`bash
-   # Connect to your PostgreSQL database and run:
+   ```bash
+   # Using psql
    psql -d your_database -f scripts/001-create-tables.sql
-   \`\`\`
    
-   Or use the Neon SQL Editor to run the script from \`scripts/001-create-tables.sql\`
+   # Or use Neon SQL Editor to run the script
+   ```
 
-5. **Run the development server:**
-   \`\`\`bash
+5. **Start development server:**
+   ```bash
    npm run dev
-   # or
-   pnpm dev
-   \`\`\`
+   ```
 
-6. **Open your browser:**
+6. **Access the application:**
    
-   Navigate to [http://localhost:3000](http://localhost:3000)
+   Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## 📦 Deployment
+## 📦 Deployment to Vercel
 
-### Deploy to Vercel
+### Step-by-Step Guide
 
-1. **Push to GitHub:**
-   \`\`\`bash
+1. **Push code to GitHub:**
+   ```bash
    git init
    git add .
    git commit -m "Initial commit"
-   git remote add origin https://github.com/YOUR_USERNAME/agency-dashboard.git
+   git branch -M main
+   git remote add origin https://github.com/BEN-OSSAMA/AgencyHub.git
    git push -u origin main
-   \`\`\`
+   ```
 
 2. **Import to Vercel:**
-   - Go to [vercel.com](https://vercel.com)
+   - Visit [vercel.com](https://vercel.com) and sign in
    - Click "Add New Project"
    - Import your GitHub repository
-   - Configure environment variables (see below)
-   - Deploy!
+   - Vercel will auto-detect Next.js configuration
 
-3. **Environment Variables in Vercel:**
+3. **Configure Environment Variables:**
    
-   ⚠️ **IMPORTANT:** You MUST configure these variables BEFORE deploying, otherwise you'll get a build error.
+   ⚠️ **CRITICAL:** Set these in Vercel Project Settings → Environment Variables
    
-   📖 **See detailed guide:** [VERCEL_ENV_SETUP.md](./VERCEL_ENV_SETUP.md)
+   | Variable | Value | Required |
+   |----------|-------|----------|
+   | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | From Clerk Dashboard | ✅ Yes |
+   | `CLERK_SECRET_KEY` | From Clerk Dashboard | ✅ Yes |
+   | `NEXT_PUBLIC_CLERK_SIGN_IN_URL` | `/sign-in` | ✅ Yes |
+   | `NEXT_PUBLIC_CLERK_SIGN_UP_URL` | `/sign-up` | ✅ Yes |
+   | `DATABASE_URL` | Your PostgreSQL connection string | ✅ Yes |
    
-   Add these in your Vercel project settings (Settings > Environment Variables):
-   
-   - \`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY\` (REQUIRED - get from [Clerk Dashboard](https://dashboard.clerk.com))
-   - \`CLERK_SECRET_KEY\` (REQUIRED - get from [Clerk Dashboard](https://dashboard.clerk.com))
-   - \`NEXT_PUBLIC_CLERK_SIGN_IN_URL\` = \`/sign-in\`
-   - \`NEXT_PUBLIC_CLERK_SIGN_UP_URL\` = \`/sign-up\`
-   - \`DATABASE_URL\` (optional - your PostgreSQL connection string)
-   
-   ✅ **Check all environments** (Production, Preview, Development) for each variable!
+   Enable for: **Production, Preview, and Development**
 
-4. **Configure Clerk for Production:**
-   - Add your Vercel domain to Clerk dashboard
-   - Update allowed origins in Clerk settings
-   - Enable production keys
+4. **Deploy:**
+   - Click "Deploy"
+   - Wait for build to complete (~2-3 minutes)
+   - Your app will be live at `your-app.vercel.app`
 
-### Alternative: Deploy to Other Platforms
+5. **Update Clerk Settings:**
+   - Add your Vercel domain to Clerk Dashboard → Settings → Domains
+   - Update allowed origins to include your production URL
 
-The application can also be deployed to:
-- **Netlify** - Similar process to Vercel
-- **Railway** - Supports PostgreSQL natively
-- **Render** - Full-stack deployment support
-- **AWS Amplify** - Enterprise deployment option
+## 📊 System Design Diagram
 
-## 🔧 Configuration
+```mermaid
+flowchart TD
+    Start([User Opens App]) --> Auth{Authenticated?}
+    
+    Auth -->|No| SignIn[Sign In Page]
+    Auth -->|Yes| Dashboard[Dashboard Home]
+    
+    SignIn --> Clerk[Clerk Authentication]
+    Clerk --> Dashboard
+    
+    Dashboard --> NavChoice{User Navigation}
+    
+    NavChoice --> Agencies[Agencies Page]
+    NavChoice --> Contacts[Contacts Page]
+    
+    Agencies --> AgenciesAPI[/api/agencies]
+    AgenciesAPI --> AgenciesJSON[(agencies.json)]
+    AgenciesJSON --> AgenciesTable[Display All Agencies Table]
+    
+    Contacts --> CheckLimit{Check Daily Limit}
+    
+    CheckLimit --> GetUsage[/api/usage GET]
+    GetUsage --> DB[(PostgreSQL Database)]
+    DB --> UsageData[user_daily_usage table]
+    
+    UsageData --> LimitCheck{Views < 50?}
+    
+    LimitCheck -->|Yes| ContactsAPI[/api/contacts]
+    LimitCheck -->|No| UpgradeModal[Upgrade Modal + Blur]
+    
+    ContactsAPI --> ContactsJSON[(contacts.json)]
+    ContactsJSON --> ContactsTable[Display Contacts Table]
+    
+    ContactsTable --> IncrementUsage[/api/usage POST]
+    IncrementUsage --> DB
+    
+    UpgradeModal --> End([User Sees Upgrade Prompt])
+    AgenciesTable --> End
+    ContactsTable --> End
+    
+    style Start fill:#4ade80
+    style End fill:#f87171
+    style Dashboard fill:#60a5fa
+    style Clerk fill:#fbbf24
+    style DB fill:#a78bfa
+    style UpgradeModal fill:#fb923c
+```
 
-### Clerk Setup
+### System Flow Explanation
 
-1. Create a new application in [Clerk Dashboard](https://dashboard.clerk.com)
-2. Copy your Publishable Key and Secret Key
-3. Configure sign-in/sign-up URLs:
-   - Sign-in URL: \`/sign-in\`
-   - Sign-up URL: \`/sign-up\`
-4. Add your domain to allowed origins (for production)
-
-### Database Setup
-
-1. Create a PostgreSQL database (recommended: [Neon.tech](https://neon.tech))
-2. Run the SQL script from \`scripts/001-create-tables.sql\`
-3. Copy your connection string to \`DATABASE_URL\`
-
-**Database Schema:**
-\`\`\`sql
-CREATE TABLE IF NOT EXISTS user_daily_usage (
-  id SERIAL PRIMARY KEY,
-  user_id VARCHAR(255) NOT NULL,
-  usage_date DATE NOT NULL DEFAULT CURRENT_DATE,
-  contacts_viewed INTEGER NOT NULL DEFAULT 0,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  UNIQUE(user_id, usage_date)
-);
-\`\`\`
+1. **Authentication Layer**: Users must authenticate via Clerk before accessing any dashboard features
+2. **Dashboard Router**: After authentication, users can navigate to Agencies or Contacts pages
+3. **Agencies Flow**: Direct access to view all agencies in table format (no limits)
+4. **Contacts Flow**: 
+   - System checks daily usage from PostgreSQL
+   - If under 50 views: display contacts and increment counter
+   - If 50+ views: show upgrade modal with blurred content
+5. **Database**: PostgreSQL stores daily usage per user with automatic date tracking
 
 ## 📁 Project Structure
 
-\`\`\`
-agency-dashboard/
+```
+AgencyHub/
 ├── app/
-│   ├── api/                    # API Routes
-│   │   ├── agencies/          # Agencies endpoint
-│   │   ├── contacts/          # Contacts endpoint
-│   │   └── usage/             # Usage tracking endpoint
-│   ├── dashboard/             # Dashboard pages
-│   │   ├── agencies/          # Agencies page
-│   │   ├── contacts/          # Contacts page
-│   │   ├── profile/           # User profile page
-│   │   ├── layout.tsx         # Dashboard layout
-│   │   └── page.tsx           # Dashboard home
-│   ├── sign-in/               # Clerk sign-in
-│   ├── sign-up/               # Clerk sign-up
-│   ├── layout.tsx             # Root layout
-│   └── page.tsx               # Landing page (3D UI)
+│   ├── api/                      # API Routes
+│   │   ├── agencies/
+│   │   │   └── route.ts          # GET all agencies
+│   │   ├── contacts/
+│   │   │   └── route.ts          # GET paginated contacts
+│   │   └── usage/
+│   │       └── route.ts          # GET/POST usage tracking
+│   ├── dashboard/                # Protected dashboard pages
+│   │   ├── agencies/
+│   │   │   └── page.tsx          # All agencies table
+│   │   ├── contacts/
+│   │   │   └── page.tsx          # Contacts table with limit
+│   │   ├── layout.tsx            # Dashboard layout
+│   │   └── page.tsx              # Dashboard home
+│   ├── sign-in/[[...sign-in]]/
+│   │   └── page.tsx              # Clerk sign-in
+│   ├── sign-up/[[...sign-up]]/
+│   │   └── page.tsx              # Clerk sign-up
+│   ├── layout.tsx                # Root layout
+│   └── page.tsx                  # Landing page
 ├── components/
-│   ├── agencies/              # Agency components
-│   ├── contacts/              # Contact components
-│   ├── dashboard/             # Dashboard components
-│   ├── home/                  # Homepage components (3D)
-│   └── ui/                    # shadcn/ui components
+│   ├── agencies/
+│   │   └── agencies-table.tsx    # Agencies table component
+│   ├── contacts/
+│   │   ├── contacts-table.tsx    # Contacts table component
+│   │   ├── limit-reached-modal.tsx # Limit exceeded modal
+│   │   └── usage-banner.tsx      # Usage indicator banner
+│   ├── dashboard/
+│   │   └── usage-chart.tsx       # Usage analytics chart
+│   └── ui/                       # shadcn/ui components
 ├── data/
-│   ├── agencies.json          # Static agency data
-│   └── contacts.json          # Static contact data
+│   ├── agencies.json             # Static agencies data
+│   └── contacts.json             # Static contacts data
 ├── lib/
-│   ├── data.ts                # Data access functions
-│   ├── db.ts                  # Database connection
-│   ├── types.ts               # TypeScript types
-│   ├── usage.ts               # Usage tracking logic
-│   └── utils.ts               # Utility functions
+│   ├── db.ts                     # PostgreSQL connection
+│   ├── types.ts                  # TypeScript interfaces
+│   ├── usage.ts                  # Usage tracking logic
+│   └── utils.ts                  # Utility functions
 ├── scripts/
-│   └── 001-create-tables.sql  # Database schema
-├── middleware.ts              # Clerk auth middleware
+│   └── 001-create-tables.sql     # Database schema
+├── middleware.ts                 # Clerk auth middleware
 └── package.json
-\`\`\`
-
-## 🎯 Features Explained
-
-### Authentication Flow
-
-1. User visits the application
-2. If not authenticated, redirected to `/sign-in`
-3. After authentication, redirected to `/dashboard`
-4. All dashboard routes are protected by middleware
-
-### Daily Limit System
-
-1. Each user starts with 50 contact views per day
-2. Views are tracked in the `user_daily_usage` table
-3. When viewing contacts page, usage is incremented
-4. When limit is reached:
-   - Modal appears with upgrade option
-   - Contacts table becomes blurred
-   - Pagination is disabled
-5. Usage resets at midnight (server time)
-
-### 3D Interactive Homepage
-
-- Beautiful 3D card effects that follow mouse movement
-- Gradient animations and particle effects
-- Glassmorphism design with backdrop blur
-- Smooth transitions and hover effects
+```
 
 ## 🔌 API Endpoints
 
-| Endpoint | Method | Description | Auth Required |
-|----------|--------|-------------|---------------|
-| `/api/agencies` | GET | Get all agencies | No |
-| `/api/contacts` | GET | Get paginated contacts | Yes |
-| `/api/usage` | GET | Get user usage stats | Yes |
-| `/api/usage` | POST | Increment contact views | Yes |
+| Endpoint | Method | Description | Auth | Purpose |
+|----------|--------|-------------|------|---------|
+| `/api/agencies` | GET | Retrieve all agencies | No | Agencies page data |
+| `/api/contacts` | GET | Get paginated contacts | Yes | Contacts page data |
+| `/api/usage` | GET | Get user's daily usage | Yes | Check limit status |
+| `/api/usage` | POST | Increment contact views | Yes | Track usage |
 
-## 🎨 UI/UX Features
+## 🎯 Key Features Implementation
 
-- **3D Interactive Cards** - Homepage cards rotate with mouse movement
-- **Gradient Animations** - Smooth color transitions
-- **Glassmorphism** - Modern blur effects
-- **Dark Mode** - Full theme support
-- **Responsive Design** - Mobile-first approach
-- **Smooth Animations** - CSS transitions and transforms
+### 1. Authentication Protection
 
-## 🧪 Testing
+```typescript
+// middleware.ts
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
-### Demo Account Setup
+const isPublicRoute = createRouteMatcher(['/', '/sign-in(.*)', '/sign-up(.*)'])
 
-To create a demo account for testing:
+export default clerkMiddleware(async (auth, req) => {
+  if (!isPublicRoute(req)) {
+    await auth.protect()
+  }
+})
+```
 
-1. Go to your Clerk Dashboard
-2. Navigate to Users section
-3. Create a new test user with:
-   - Email: `demo@agencyhub.com`
-   - Password: `Demo@2024`
-4. Or use the sign-up page to create one
+All `/dashboard/*` routes require authentication via Clerk.
 
-### Test Scenarios
+### 2. Daily Limit System
 
-1. **Authentication Test:**
-   - Try accessing `/dashboard` without login
-   - Should redirect to `/sign-in`
-   - After login, should access dashboard
+**Database Schema:**
+```sql
+CREATE TABLE user_daily_usage (
+  id SERIAL PRIMARY KEY,
+  user_id VARCHAR(255) NOT NULL,
+  usage_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  contacts_viewed INTEGER DEFAULT 0,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW(),
+  UNIQUE(user_id, usage_date)
+);
+```
 
-2. **Usage Limit Test:**
-   - View contacts repeatedly
-   - After 50 views, should see upgrade modal
-   - Table should become blurred
+**Logic Flow:**
+1. User visits contacts page
+2. System queries `user_daily_usage` for today's count
+3. If count < 50: display contacts and increment
+4. If count ≥ 50: show upgrade modal with blurred table
 
-3. **Navigation Test:**
-   - Navigate between Dashboard, Agencies, Contacts
-   - Test search functionality
-   - Test pagination
+### 3. Upgrade Modal (No Payment)
 
-## 📊 System Design
+When limit is reached:
+- Modal overlay appears
+- Contact table becomes blurred
+- "Upgrade Now" button (UI only, no payment)
+- User cannot interact with contacts until next day
 
-\`\`\`mermaid
-flowchart TD
-    User[User] --> ClerkAuth[Clerk Authentication]
-    ClerkAuth --> |Authenticated| Dashboard[Dashboard]
-    ClerkAuth --> |Not Authenticated| SignIn[Sign In Page]
-    
-    Dashboard --> Agencies[Agencies Page]
-    Dashboard --> Contacts[Contacts Page]
-    Dashboard --> Stats[Usage Stats]
-    Dashboard --> Profile[User Profile]
-    
-    Contacts --> DailyLimitCheck{Daily Limit Check}
-    DailyLimitCheck --> |Under Limit| ContactsTable[View Contacts]
-    DailyLimitCheck --> |Over Limit| LimitModal[Upgrade Modal]
-    
-    ContactsTable --> TrackUsage[Track Usage]
-    TrackUsage --> DB[(PostgreSQL DB)]
-    
-    Stats --> DB
-    Profile --> Clerk[Clerk User Profile]
-    
-    subgraph Database
-        DB --> UsageTable[user_daily_usage]
-    end
-    
-    subgraph Static Data
-        Agencies --> AgenciesJSON[agencies.json]
-        ContactsTable --> ContactsJSON[contacts.json]
-    end
-\`\`\`
+### 4. Usage Analytics Chart
+
+The dashboard includes a visual usage chart that displays:
+- Today's usage progress (with progress bar)
+- Weekly total views
+- Remaining views for the day
+- Visual indicators when approaching or reaching the limit
+
+![Usage Chart](images/chart.png)
+
+The chart provides real-time feedback on your daily contact viewing activity, helping you manage your usage effectively.
+
+## 🧪 Testing the Application
+
+### Test Scenario 1: Authentication Flow
+1. Navigate to `/dashboard` without logging in
+2. Should redirect to `/sign-in`
+3. After authentication, should access dashboard
+
+### Test Scenario 2: View Agencies
+1. Log in to dashboard
+2. Navigate to "Agencies" page
+3. Should see complete table of all agencies
+4. No limits applied
+
+### Test Scenario 3: Daily Limit
+1. Log in to dashboard
+2. Navigate to "Contacts" page
+3. View contacts repeatedly (each page view counts)
+4. After 50 views, upgrade modal should appear
+5. Table should be blurred and non-interactive
+6. Next day (or manual DB reset), limit resets
 
 ## 🐛 Troubleshooting
 
 ### Database Connection Issues
-
 - Verify `DATABASE_URL` is set correctly
 - Check database credentials
 - Ensure database is accessible from your IP
 - For Neon, check connection pooling settings
 
 ### Clerk Authentication Issues
-
 - Verify keys match your Clerk instance
 - Check allowed origins in Clerk dashboard
 - Ensure URLs are correctly configured
 - Clear browser cache and cookies
 
 ### Build Errors
-
 - Run `npm install` to ensure dependencies are installed
 - Check Node.js version (should be 18+)
 - Clear `.next` folder and rebuild
-
-## 📝 License
-
-MIT License - feel free to use this project for your portfolio or learning purposes.
+- Ensure all environment variables are set
 
 ## 👨‍💻 Author
 
 **Oussama Ben Kacem**
 
-- GitHub: [@yourusername](https://github.com/BEN-OSSAMA)
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/oussama-ben-kacem/)
+- GitHub: [@BEN-OSSAMA](https://github.com/BEN-OSSAMA)
+- LinkedIn: [Oussama Ben Kacem](https://www.linkedin.com/in/oussama-ben-kacem/)
+- Live Demo: [https://agency-hub01.vercel.app](https://agency-hub01.vercel.app)
 
 ## 🙏 Acknowledgments
 
-- [Next.js](https://nextjs.org) - The React Framework
-- [Clerk](https://clerk.com) - Authentication made easy
-- [shadcn/ui](https://ui.shadcn.com) - Beautiful UI components
-- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS
-- [Neon](https://neon.tech) - Serverless PostgreSQL
-
-## 📄 Additional Documentation
-
-- [DEPLOYMENT.md](./DEPLOYMENT.md) - Detailed deployment guide
-- [REQUIREMENTS_CHECKLIST.md](./REQUIREMENTS_CHECKLIST.md) - Requirements verification
+- [Next.js](https://nextjs.org) - The React Framework for Production
+- [Clerk](https://clerk.com) - User Authentication & Management
+- [shadcn/ui](https://ui.shadcn.com) - Beautifully Designed Components
+- [Tailwind CSS](https://tailwindcss.com) - Utility-First CSS Framework
+- [Neon](https://neon.tech) - Serverless PostgreSQL Database
+- [Vercel](https://vercel.com) - Deployment Platform
 
 ---
 
-**⭐ Star this repo if you found it helpful!**
+**⭐ If you found this project helpful, please give it a star on GitHub!**
+
+**🔗 Live Application:** [https://agency-hub01.vercel.app](https://agency-hub01.vercel.app)
